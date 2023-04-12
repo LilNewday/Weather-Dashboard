@@ -17,7 +17,6 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="./style.css" />
   </head>
   <header
     class="container-fluid mt-2 text-light text-center p-2"
@@ -29,93 +28,43 @@
     <div class="container">
       <!-- City search -->
       <div class="row">
-        <div class="col-sm-4">
+        <aside class="col-sm-4">
           <h2 class="pt-2">Search for a City:</h2>
-          <div class="input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Enter A City Name"
-              id="search"
-            />
-            <div class="input-group mt-3">
-              <button
-                class="container-fluid btn btn-primary"
-                id="search-button"
-              >
-                Search
-              </button>
-            </div>
-          </div>
-          <ul class="list-group bg-secondary text-white"></ul>
-        </div>
-
-        <!-- Current weather -->
-        <div class="col-sm-8 mt-2">
-          <div class="row ml-2 border border-dark rounded">
-            <div class="col-sm-12" id="current-weather">
-              <h3 class="city-name mb-1 mt-2 bolder" id="current-city"></h3>
-              <p>Temp:<span id="temperature"></span></p>
-              <p>Wind:<span id="wind"></span></p>
-              <p>Humidity:<span id="humidity"></span></p>
-            </div>
-          </div>
-
-          <!-- Future weather -->
-          <div class="col-sm-12 mt-2" id="future-weather">
-            <h3>5-Day Forecast:</h3>
-            <div class="row text-light">
-              <div
-                class="col-sm-2 bg-secondary forecast text-white ml-2 mb-3 p-2 mt-2 rounded"
-              >
-                <p id="Day-1"></p>
-                <p id="Weather-1"></p>
-                <p>Temp:<span id="Temp-1"></span></p>
-                <p>Wind:<span id="wind-1"></span></p>
-                <p>Humidity:<span id="Humidity-1"></span></p>
-              </div>
-
-              <div
-                class="col-sm-2 bg-secondary forecast text-white ml-2 mb-3 p-2 mt-2 rounded"
-              >
-                <p id="Day-2"></p>
-                <p id="Weather-2"></p>
-                <p>Temp:<span id="Temp-2"></span></p>
-                <p>Wind:<span id="wind-2"></span></p>
-                <p>Humidity:<span id="Humidity-2"></span></p>
-              </div>
-
-              <div
-                class="col-sm-2 bg-secondary forecast text-white ml-2 mb-3 p-2 mt-2 rounded"
-              >
-                <p id="Day-3"></p>
-                <p id="Weather-3"></p>
-                <p>Temp:<span id="Temp-3"></span></p>
-                <p>Wind:<span id="wind-3"></span></p>
-                <p>Humidity:<span id="Humidity-3"></span></p>
-              </div>
-
-              <div
-                class="col-sm-2 bg-secondary forecast text-white ml-2 mb-3 p-2 mt-2 rounded"
-              >
-                <p id="Day-4"></p>
-                <p id="Weather-4"></p>
-                <p>Temp:<span id="Temp-4"></span></p>
-                <p>Wind:<span id="wind-4"></span></p>
-                <p>Humidity:<span id="Humidity-4"></span></p>
-              </div>
-
-              <div
-                class="col-sm-2 bg-secondary forecast text-white ml-2 mb-3 p-2 mt-2 rounded"
-              >
-                <p id="Day-5"></p>
-                <p id="Weather-5"></p>
-                <p>Temp:<span id="Temp-5"></span></p>
-                <p>Wind:<span id="wind-5"></span></p>
-                <p>Humidity:<span id="Humidity-5"></span></p>
+          <form id="search-method" class="form">
+            <div class="form-inline form-group">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter A City Name"
+                  id="search"
+                />
+                <div class="input-group mt-3">
+                  <button
+                    type="submit"
+                    class="container-fluid btn btn-primary"
+                    id="search-button"
+                  >
+                    Search
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
+          <ul class="list-group bg-secondary text-white" id="history"></ul>
+        </aside>
+
+        <!-- Current Weather -->
+        <div class="col-lg-9 pb-3">
+          <section
+            id="current"
+            class="row ml-2 border border-dark rounded"
+          ></section>
+          <!-- Future Weather -->
+          <section 
+            id="future" 
+            class="row col-sm-12 mt-2">
+          </section>
         </div>
       </div>
     </div>
@@ -128,6 +77,22 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
-    <script src="./script.js"></script>
+    <!-- Day JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
+      integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/utc.min.js"
+      integrity="sha512-m00bfmYnAl3plEBlQfeQUhw/U2uvmw29V2+jxSWpAjankMWS+zAsjezbKWDEJNXqWq9o9qQZSOiA2RKDpa4D5w=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js"
+      integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
   </body>
 </html>
